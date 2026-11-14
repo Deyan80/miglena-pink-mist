@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="bg" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Розова мъгла — Миглена Иванова</title>
+<meta name="description" content="Розова мъгла — жива страница за Миглена Иванова: морето, тишината и изкуството да живееш. Всеки кадър изплува от мъглата и се повтаря като безкраен gif.">
+<meta name="theme-color" content="#14060f">
+<!-- ВАЖНО: адресът е https://deyan80.github.io/miglena-pink-mist/ – ако смениш името на репото, промени го на 4-те места -->
+<link rel="canonical" href="https://deyan80.github.io/miglena-pink-mist/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Розова мъгла">
+<meta property="og:locale" content="bg_BG">
+<meta property="og:title" content="Розова мъгла — Миглена Иванова">
+<meta property="og:description" content="Морето, тишината и изкуството да живееш. Всеки кадър изплува от розова мъгла и се повтаря като безкраен gif.">
+<meta property="og:url" content="https://deyan80.github.io/miglena-pink-mist/">
+<meta property="og:image" content="https://deyan80.github.io/miglena-pink-mist/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Розова мъгла — Миглена Иванова">
+<meta name="twitter:description" content="Морето, тишината и изкуството да живееш.">
+<meta name="twitter:image" content="https://deyan80.github.io/miglena-pink-mist/share.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g'%3E%3Cstop offset='0' stop-color='%23ffd3e6'/%3E%3Cstop offset='1' stop-color='%23e0508a'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='28' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --safe-t:env(safe-area-inset-top,0px);--safe-b:env(safe-area-inset-bottom,0px);
+}
+:root[data-theme="dark"]{
+  --bg1:#12050e;--bg2:#2b0b25;--ink:#ffeaf3;--ink2:#f3bcd5;--acc:#ff8cc0;--acc2:#ffd0e3;
+  --panel:rgba(34,10,31,.72);--line:rgba(255,160,205,.32);--veil:255,120,180;--orbfg:#2b0b25;
+  --glow:rgba(255,120,180,.5);
+}
+:root[data-theme="light"]{
+  --bg1:#fff5f8;--bg2:#ffd0e2;--ink:#3d0f31;--ink2:#7a3a62;--acc:#c81f66;--acc2:#ee6a9f;
+  --panel:rgba(255,246,249,.82);--line:rgba(160,40,100,.3);--veil:255,170,205;--orbfg:#fff;
+  --glow:rgba(230,80,140,.35);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  background:linear-gradient(165deg,var(--bg1),var(--bg2));color:var(--ink);
+  font-family:var(--sans);overflow:hidden;-webkit-tap-highlight-color:transparent;
+  -webkit-font-smoothing:antialiased;transition:background-color .6s;
+}
+#mist{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+.vig{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 45%,transparent 40%,rgba(20,4,16,.38) 100%)}
+:root[data-theme="light"] .vig{background:radial-gradient(ellipse at 50% 45%,transparent 50%,rgba(200,60,120,.16) 100%)}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+
+/* ---------- top bar ---------- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;
+  padding:calc(10px + var(--safe-t)) 12px 0;pointer-events:none}
+.bar>*{pointer-events:auto}
+.brand{display:flex;flex-direction:column;gap:2px;padding-left:4px;pointer-events:none}
+.brand b{font:600 1.15rem/1 var(--serif);letter-spacing:.02em}
+.brand span{font:700 .62rem/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--acc)}
+.tools{display:flex;gap:8px}
+.ib{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--panel);
+  display:grid;place-items:center;padding:0;transition:transform .25s,border-color .25s}
+.ib:hover{transform:scale(1.07);border-color:var(--acc)}
+.ib svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ib.pill{width:auto;min-width:44px;padding:0 12px;font:700 .78rem var(--sans);letter-spacing:.08em}
+.ib[aria-pressed="true"]{border-color:var(--acc);box-shadow:0 0 18px var(--glow)}
+.sun{display:none}
+:root[data-theme="light"] .sun{display:block}
+:root[data-theme="light"] .moon{display:none}
+.snd-off{display:block}.snd-on{display:none}
+.ib.on .snd-off{display:none}.ib.on .snd-on{display:block}
+#prog{position:fixed;top:0;left:0;right:0;height:2px;z-index:6;background:var(--acc);transform:scaleX(0);transform-origin:left;
+  box-shadow:0 0 12px var(--acc)}
+
+/* ---------- stage / beats ---------- */
+#stage{position:fixed;inset:0;z-index:1;touch-action:none}
+.beat{
+  --dx:0px;--dy:24px;--s:1.03;--kx:0px;--ky:0px;
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:clamp(14px,3dvh,28px);
+  padding:calc(66px + var(--safe-t)) 22px calc(122px + var(--safe-b));
+  visibility:hidden;pointer-events:none;
+}
+.beat.on{visibility:visible}
+.beat.out{animation:bout .9s ease-in forwards}
+.beat.short.out{animation-name:boutB}
+@keyframes bout{to{opacity:0;transform:translate3d(0,-12px,0) scale(.985)}}
+@keyframes boutB{to{opacity:0;transform:translate3d(0,-12px,0) scale(.985);filter:blur(12px)}}
+
+.w,.c{display:inline-block;opacity:0}
+.wd{display:inline-block;white-space:nowrap}
+.beat.in .w{animation:wIn 1s cubic-bezier(.2,.7,.2,1) var(--d,0ms) both}
+.beat.in .c{animation:cIn 1.15s cubic-bezier(.2,.7,.2,1) var(--d,0ms) both}
+@keyframes wIn{from{opacity:0;transform:translate3d(var(--dx),var(--dy),0) scale(var(--s))}to{opacity:1;transform:none}}
+@keyframes cIn{from{opacity:0;transform:translate3d(var(--dx),var(--dy),0) scale(var(--s));filter:blur(14px)}
+  55%{filter:blur(3px)}to{opacity:1;transform:none;filter:blur(0)}}
+
+.k{display:block;font:700 .72rem/1.2 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--acc);margin-bottom:.2rem}
+.h{margin:0;font:600 clamp(2.3rem,9vw,5.8rem)/1.02 var(--serif);letter-spacing:-.01em;
+  text-shadow:0 0 34px rgba(var(--veil),.5)}
+.p{margin:0;font:500 clamp(1.2rem,3.3vw + .55rem,2.05rem)/1.38 var(--serif);max-width:25em;color:var(--ink);
+  text-shadow:0 0 22px rgba(var(--veil),.35)}
+.text .p.dim{color:var(--ink2)}
+.big .p{font-style:italic;font-size:clamp(1.9rem,6.6vw,4.3rem);line-height:1.12;max-width:15em}
+.quote .p{font-style:italic;font-size:clamp(1.4rem,4vw + .4rem,2.4rem);max-width:19em}
+.by,.s{display:block;font:700 .7rem/1.3 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--ink2)}
+.s{letter-spacing:.12em;text-transform:none;font-weight:500;font-size:.8rem;margin-top:.4rem}
+.title .h{font-size:clamp(3.2rem,15vw,9.5rem);line-height:.92}
+.title .p{font-size:clamp(1.3rem,4vw,2.3rem);font-style:italic;color:var(--ink2)}
+.inner{display:flex;flex-direction:column;align-items:center;gap:clamp(10px,2.2dvh,20px)}
+
+.links{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:.6rem;opacity:0}
+.beat.in .links{animation:wIn 1s ease 1s both}
+.beat.on .links{pointer-events:auto}
+.links a{display:inline-flex;align-items:center;gap:.65em;min-height:48px;padding:0 22px;border-radius:99px;
+  border:1px solid var(--line);background:var(--panel);text-decoration:none;font:700 .9rem var(--sans);
+  transition:transform .25s,border-color .25s,box-shadow .25s}
+.links a:hover{transform:translateY(-2px);border-color:var(--acc);box-shadow:0 8px 30px var(--glow)}
+.links svg{width:18px;height:18px;fill:none;stroke:var(--acc);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* photos */
+.frame{
+  position:relative;height:clamp(220px,calc(100dvh - 306px),600px);aspect-ratio:4/5;max-width:86vw;flex:none;
+  border-radius:50% 50% 22px 22px/34% 34% 22px 22px;overflow:hidden;background:rgba(var(--veil),.3);
+  box-shadow:0 0 0 1px var(--line),0 0 70px -6px var(--glow),0 30px 80px -30px rgba(0,0,0,.5);
+}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.frame .lo{transform:scale(1.15);filter:saturate(1.25)}
+.frame .hi{opacity:0;transform-origin:var(--fo,50% 40%)}
+.beat.in .hi{animation:hiIn 1.6s ease-out .15s forwards,kb 18s ease-in-out .15s forwards}
+@keyframes hiIn{to{opacity:1}}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.11) translate3d(var(--kx),var(--ky),0)}}
+.veil{position:absolute;inset:0;pointer-events:none;opacity:1;
+  background:radial-gradient(ellipse at 50% 38%,rgba(var(--veil),.55),rgba(var(--veil),.95) 85%)}
+.beat.in .veil{animation:veilOut 1.9s ease-out forwards}
+.beat.out .veil{animation:veilIn .9s ease-in forwards}
+@keyframes veilOut{0%{opacity:1}35%{opacity:.85}to{opacity:0}}
+@keyframes veilIn{from{opacity:0}to{opacity:1}}
+.cap{display:flex;flex-direction:column;align-items:center;gap:10px}
+.cap .p{font-size:clamp(1.3rem,3.6vw + .4rem,2.1rem);max-width:17em}
+.photo.quote .cap .p{font-size:clamp(1.25rem,3.2vw + .4rem,2rem)}
+@media (orientation:landscape) and (min-width:700px){
+  .beat.photo{flex-direction:row;gap:clamp(28px,6vw,96px)}
+  .beat.photo.rev{flex-direction:row-reverse}
+  .beat.photo .frame{height:clamp(200px,calc(100dvh - 196px),680px)}
+  .beat.photo .cap{align-items:flex-start;text-align:left;max-width:min(26em,38vw)}
+  .beat.photo.rev .cap{align-items:flex-end;text-align:right}
+}
+@media (max-height:520px){
+  .beat{padding-top:calc(54px + var(--safe-t));padding-bottom:calc(78px + var(--safe-b))}
+  .frame{height:clamp(160px,calc(100dvh - 140px),420px)}
+  .orb{width:44px;height:44px}.orblabel{display:none}
+}
+
+/* ---------- dock ---------- */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;flex-direction:column;align-items:center;
+  padding:0 12px calc(8px + var(--safe-b));pointer-events:none}
+.dock>*{pointer-events:auto}
+.dots{display:flex;align-items:center;justify-content:center}
+.dot{width:30px;height:30px;border:0;background:none;padding:0;display:grid;place-items:center}
+.dot::before{content:"";width:8px;height:8px;border-radius:99px;background:var(--ink2);opacity:.5;transition:all .4s}
+.dot[aria-current="true"]::before{width:22px;background:var(--acc);opacity:1;box-shadow:0 0 12px var(--acc)}
+.orb{position:relative;width:56px;height:56px;border-radius:50%;border:1px solid rgba(255,255,255,.35);padding:0;
+  background:radial-gradient(circle at 35% 28%,var(--acc2),var(--acc));color:var(--orbfg);display:grid;place-items:center;
+  box-shadow:0 0 34px var(--glow)}
+.orb::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:2px solid var(--acc);animation:ring 2.6s ease-out infinite;pointer-events:none}
+@keyframes ring{from{transform:scale(1);opacity:.75}to{transform:scale(1.9);opacity:0}}
+.orb svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(3px)}}
+.orb .again{display:none}
+.orb.last .down{display:none}.orb.last .again{display:block;animation:none}
+.orblabel{margin-top:6px;font:700 .66rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--ink2)}
+.hud{position:fixed;left:14px;bottom:calc(16px + var(--safe-b));z-index:5;font:700 .7rem/1.1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.06em;color:var(--ink2);display:flex;align-items:center;gap:7px;pointer-events:none}
+.hud .inf{font-size:1.5rem;line-height:1;color:var(--acc);animation:spin 6s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pp{position:fixed;right:12px;bottom:calc(8px + var(--safe-b));z-index:5}
+.pp .play{display:none}.pp.paused .play{display:block}.pp.paused .pause{display:none}
+.paused-state .beat,.paused-state .beat *{animation-play-state:paused!important}
+.hint{position:fixed;left:0;right:0;bottom:calc(112px + var(--safe-b));text-align:center;z-index:4;pointer-events:none;
+  font:500 .78rem var(--sans);letter-spacing:.08em;color:var(--ink2);opacity:0;transition:opacity 1s}
+.hint.show{opacity:.9}
+
+/* ---------- share sheet ---------- */
+.sheet{position:fixed;inset:0;z-index:20;display:grid;place-items:end center;background:rgba(18,4,14,.55);
+  opacity:0;pointer-events:none;transition:opacity .3s}
+.sheet.open{opacity:1;pointer-events:auto}
+.card{width:min(520px,100%);max-height:92dvh;overflow:auto;background:var(--bg1);border:1px solid var(--line);
+  border-radius:26px 26px 0 0;padding:18px 18px calc(18px + var(--safe-b));transform:translateY(40px);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.sheet.open .card{transform:none}
+@media (min-width:640px){.sheet{place-items:center}.card{border-radius:26px}}
+.card header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.card h3{margin:0;font:600 1.6rem var(--serif)}
+.thumb{display:flex;gap:12px;align-items:center;margin-bottom:14px;padding:10px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+.thumb img{width:96px;height:auto;aspect-ratio:1200/630;object-fit:cover;border-radius:10px;flex:none}
+.thumb span{font:500 .82rem/1.35 var(--sans);color:var(--ink2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.grid a,.grid button{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:14px;border:1px solid var(--line);
+  background:var(--panel);text-decoration:none;font:700 .86rem var(--sans);padding:0 12px;transition:border-color .2s,transform .2s}
+.grid a:hover,.grid button:hover{border-color:var(--acc);transform:translateY(-2px)}
+.grid .copy{grid-column:1/-1;background:linear-gradient(135deg,var(--acc),var(--acc2));color:var(--orbfg);border:0}
+.toast{position:fixed;left:50%;bottom:calc(130px + var(--safe-b));transform:translate(-50%,16px);z-index:30;padding:12px 20px;border-radius:99px;
+  background:var(--panel);border:1px solid var(--acc);font:700 .84rem var(--sans);opacity:0;pointer-events:none;transition:all .35s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+noscript{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:30px;text-align:center;font:500 1.4rem var(--serif)}
+
+@media (prefers-reduced-motion:reduce){
+  .beat{--dx:0px;--dy:0px;--s:1}
+  .c{filter:none!important}
+  .beat.in .hi{animation:hiIn 1s ease-out forwards}
+  .orb::after,.orb svg,.hud .inf{animation:none}
+}
+</style>
+</head>
+<body>
+<canvas id="mist" aria-hidden="true"></canvas>
+<div class="vig" aria-hidden="true"></div>
+<div id="prog" aria-hidden="true"></div>
+
+<header class="bar">
+  <div class="brand"><b data-i="brand">Розова мъгла</b><span id="lvl">I · Начало</span></div>
+  <div class="tools">
+    <button class="ib" id="bSound" type="button" data-aria="sound" aria-pressed="false">
+      <svg class="snd-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>
+      <svg class="snd-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>
+    </button>
+    <button class="ib" id="bTheme" type="button" data-aria="theme">
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+    <button class="ib pill" id="bLang" type="button" data-aria="lang">EN</button>
+    <button class="ib" id="bShare" type="button" data-aria="share">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="stage"></main>
+<div class="hint" id="hint" aria-hidden="true"></div>
+
+<div class="hud" aria-hidden="true"><span class="inf">∞</span><span id="hud">×1 · 01/02</span></div>
+<button class="ib pp" id="bPause" type="button" data-aria="pause">
+  <svg class="pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg>
+  <svg class="play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg>
+</button>
+
+<nav class="dock" aria-label="Нива">
+  <div class="dots" id="dots"></div>
+  <button class="orb" id="orb" type="button" data-aria="next">
+    <svg class="down" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    <svg class="again" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9M20 4v5h-5"/></svg>
+  </button>
+  <span class="orblabel" id="orbLabel">Нататък</span>
+</nav>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle">
+  <div class="card">
+    <header><h3 id="shTitle" data-i="shTitle">Сподели този свят</h3>
+      <button class="ib" id="shClose" type="button" data-aria="close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>
+    <div class="thumb"><img src="share.jpg" alt="" width="1200" height="630"><span data-i="shNote">Така ще изглежда връзката в социалните мрежи.</span></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<noscript>Розова мъгла — страницата има нужда от JavaScript. / This page needs JavaScript.</noscript>
+
+<script>
+(()=>{
+'use strict';
+const $=(s,r=document)=>r.querySelector(s);
+const TINY={"g1": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAUABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDEudJnd0LBACdpcHjHrzVa60SeBnltVkdP4GPPfrkV2lxpax2QWW6Ie3YvEyjjHdT7VkRhniu53lljgjG393Jg8nBGK50qlh2VjmodPvbiMTRF9j8j71Fa0V09tEtvDdSrFENqAelFJufYk7m8RXidD0KkcVzMljALZgwLBuSGPGaKK6RrY07DQNMktld7cktzy59B70UUVSSsQ2f/2Q==", "g2": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAcAA0DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCxc3+ixtGRZW8j7Wc5LdAOe/Jq2NT0yI/uorZQQOkfX865jQYhqsV1GLYSypGirIT9wZP86z7qeOO8mikZozG20qexHB6Vg03oaO1rlzwtushK5lQmUAFQeRwetZ2u2U7apLJEd/mbWOAeMqK33uZft0UalEUtghI1XsfQVsW8UksCMbq4GVBwHx2+lXsKT91H/9k=", "g3": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAcABMDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwBIWRpCiupdeqg8itO1O0isJHWO2lV7ZVmtzmOTIDPznJ9fT6GrUOr2xWIF/LkI+cP0z7GsOazOtYec480VdHSg5ANFc8PEMSDa8MgYdcYP65oqudB9Tr/ysTVrSSWJDHEZFDAuFPzYHpWR/Y7TqZbO4SfbwVYFGU+hFdXGeKEhhWd51iQSuMMwHJFJxuXRxUqUbI4QiRSVK4I4I9KK6i60u0nuHldDuY5ODiisuU9eOOg0m7/gf//Z", "g4": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAcABMDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCTUJHt7CaaNQzohKj1PaorG2u47K3nurmSWSXh0aPCjjIKsPypNfuIYtNaGUbmmwqrg+vX8KXR7oz2ghkcl0yRkfw1wXsj0VRk4OfRExTmipivNFIzMDxBeC4AggBdbf8AeSsOgPQfzqDTrmS38mVD04Yeo71q6DaQx28/y7/McqwbkEDt+tYqhY7whVG1JWQLzjAPSmerh3Fc1NrRHXHBPFFITg4AoqTyz//Z", "g6": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAcABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwC5N5dtbSzuo2xqWPHpVSzmlneOO6iiRpoRPHsycLnGDkdRkfnS+I5CujzomMygR5PbNYj3r289rLb3DuYbdY2L87s4JH58fhXFdWPTpYapV1jsdA9sN33R+VFWbeZLqBJ4uVcZ+ntRUmTunZmH4ndmtUjTP3wzEdgP/rmsW3kSO4jeZd0YYbhjORWpr7kxp/v4/Ssaxci6RONrNtIx1B4IoPSwz5aTOm0S3cWG4TPGruWVc9u38qKtwttiUAAADAFFI4p1HKTZ/9k=", "g7": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAcAA4DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDlLC6utQeaB5ECzndM+0biB6dqWfW7yO7+SRH8tTGrFAMrmnm1hjt4pUZ45ZIiNwOMenFUbOBZ42jcqpRujNtBz7/hUKSdzepScYK/XqX75C7QKpKqqkYzyBmn6XNZw2zx3OwHf3A5/GqiuzIpJyQW61ApxM4wCDzg1CdmenOgp4eMb6n/2Q==", "g8": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAaABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCtLZqdRtrmV2muN4AUDGB2z24qxJOuzzFlCOBvRf4TyBz7/wCNU7SRzqkTSIVTk8c449azllcJJETkEoVPPIGTjP41zqbYuXQuS6s8L+WFchenymis/wAxVZg5ZGz/AHCc+9FP2011Zg6avsdVa2cBug0F0pIWQ/KoyBg/402WwR7GNA+w7iSxjHzen1rPiVY/EkqooVfs78AYHStbJPhqwJJJyOT/ALlcyuovXodfN7pQ/slO9z+Uf/16KsZOBz2ormdSfcye5//Z", "g9": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAaABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCM6fG+/eZVViclWxnBPSs7Qv8AiYLIX3/6OMbg/JyWA/ADFaX9oW0DMz+aVRsvkE9SRx+VVtLmaCzJnkLLI7qmByQPmz7f/WqV5ml3LQ07fR1hQqjzEE5yzqc8fTpRTYtWinUtFKVUfLhk5BAHvRUt6mMoSvsTW4jaUAMT+8Ixtxj6ZoukEcpQlgNodcj73SgEiWLBx0/maSckRhQcBSMAduDVS6GifQsBYscs2cDjA44+lFQhEYBmRSSoySPYUUnuYu9z/9k=", "g10": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAcABADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDet5jLEsiqdpqrqVzIU8lcqp+8fUelVLaSWNSI7xIl64bH+NSWcd1eXcavMpYncq7cZHY59KyRs2Ilsz7sxgn/AGY8/wBKQC5hikjhPlFWyRgA49s8478VfFrGWAcu+T1ZyanvAtlFuhRc9ORWKZq0j//Z", "miglena": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAcABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDhZbdoYwkiZG7dvTn2rQj1S4ewNrJIJF4CyH76gHO0+orOFpL5pEqsgP3QWxj862oNGls7Jpb7zEcsFQIoYMexz6YJpc7V7Byp2udBoCpb2TpNMgcybjuIHVVorn/Jlkw8c8YDAHEikHp6UV1wryjFJI55Uot3uaOr6akMpSC3Ko653qhAJ9upx9eataZq9tbNtvryEea5DJOxKgA4+UjgfjU9reXGrMkN5ITH1Kr8uT6nFZ+q6HaW0bz2xePL/wCr+Vk/Jga8mrTdVclz0U+VXOzh1LR/KUrqVmFI4HmCivLZdKheVmeSRmJ5J2/4UVzLK4W3/P8AzD27P//Z"};
+const FOCUS={g1:'50% 30%',g2:'50% 12%',g3:'50% 30%',g4:'50% 20%',g6:'50% 15%',g7:'50% 15%',g8:'50% 80%',g9:'50% 40%',g10:'50% 75%',miglena:'50% 30%'};
+const T=(bg,en)=>({bg,en});
+const LINKS={fb:'https://www.facebook.com/miglena.ivanova.712',ig:'https://www.instagram.com/miglena534/'};
+
+/* ---------------- content ---------------- */
+const LV=[
+ {name:T('Начало','Beginning'),loops:3,beats:[
+  {cls:'title',k:T('За нея','About her'),h:T('Розова мъгла','Pink Mist'),p:T('Миглена Иванова','Miglena Ivanova')},
+  {img:'g6',p:T('Морето, тишината и изкуството да живееш','The sea, the silence, and the art of living')}
+ ]},
+ {name:T('За нея','About her'),loops:2,beats:[
+  {k:T('За нея','About her'),p:T('Миглена Иванова живее близо до морето в Кипър — там, където утрото започва с гледка към водата, а денят се движи по свой собствен, спокоен ритъм.','Miglena Ivanova lives by the sea in Cyprus — where the morning begins with a view of the water and the day moves at its own calm pace.')},
+  {img:'g8',p:T('Естествена красота, забелязана навсякъде.','Natural beauty, noticed everywhere.')},
+  {p:T('Завършила е висше образование, но истинската ѝ диплома е житейската лекота, с която подхожда към всеки нов ден.','She has a university degree, but her true diploma is the ease of living with which she greets every new day.')},
+  {p:T('Тя определя себе си като човек, който се грижи преди всичко за собственото си равновесие — физическо и душевно. Именно затова голяма част от времето ѝ е посветена на пилатес и реформер тренировки, а дългите разходки покрай брега са нейният начин да „презареди“.','She describes herself as someone who cares, above all, for her own balance — physical and spiritual. That is why much of her time belongs to Pilates and reformer training, while long walks along the shore are her way to “recharge”.')},
+  {img:'g9',p:T('Живот, подреден около онова, което наистина има значение.','A life arranged around what truly matters.')},
+  {cls:'big',p:T('Изяществото ѝ никога не остава незабелязано.','Her elegance never goes unnoticed.')}
+ ]},
+ {name:T('Стил','Style'),loops:2,beats:[
+  {k:T('Стил','Style'),h:T('От модна писта до удоволствие за душата','From the runway to a pleasure for the soul')},
+  {p:T('Преди години Миглена е работила като професионален модел — опит, който ѝ е дал усета за линия, движение и увереност пред обектива. Днес тя носи този опит по различен начин: помага на бутици да представят колекциите си, като облича техните дрехи предимно за приятелки и близки хора от своя кръг.','Years ago, Miglena worked as a professional model — an experience that gave her a feel for line, movement and confidence in front of the lens. Today she carries it differently: she helps boutiques present their collections, wearing their clothes mostly for friends and people close to her.')},
+  {p:T('Вече не е професия, а удоволствие — начин да съчетае вкус, приятелство и красота, без напрежението на индустрията.','It is no longer a profession but a pleasure — a way to combine taste, friendship and beauty, without the pressure of the industry.')},
+  {img:'g7',cls:'quote',p:T('„Не бързам за никъде — просто съм тук, с морето и с хубавите неща.“','“I’m not rushing anywhere — I’m simply here, with the sea and the beautiful things.”'),by:T('Миглена Иванова','Miglena Ivanova')}
+ ]},
+ {name:T('Галерия','Gallery'),loops:2,beats:[
+  {k:T('Галерия','Gallery'),h:T('Всеки миг — нова глава','Every moment — a new chapter'),p:T('Пътуванията и красивите мигове са другата ѝ голяма страст — начин да открива нови места, хора и настроения, без да губи усещането за дом.','Travel and beautiful moments are her other great passion — a way to discover new places, people and moods without losing the feeling of home.')},
+  {img:'g1',p:T('Красота, съчетана с усмивка.','Beauty, paired with a smile.')},
+  {img:'g3',p:T('Стил, който вдъхновява.','Style that inspires.')},
+  {img:'g2',p:T('Грация във всяко движение.','Grace in every movement.')},
+  {img:'g4',p:T('Красотата ѝ разказва своя история.','Her beauty tells its own story.')},
+  {img:'g10',p:T('Излъчване, което остава в паметта.','A presence that stays in memory.')},
+  {img:'miglena',p:T('Красива във всеки миг.','Beautiful in every moment.')},
+  {img:'g6',p:T('Светлина в погледа ѝ.','Light in her gaze.')},
+  {img:'g7',p:T('Изтънчен вкус и очарование.','Refined taste and charm.')}
+ ]},
+ {name:T('Контакти','Contacts'),loops:2,beats:[
+  {cls:'links-beat',lock:1,hold:9500,k:T('Контакти','Contacts'),h:T('Последвай нейния свят','Follow her world'),p:T('Повече мигове, стил и вдъхновение — във Facebook и Instagram.','More moments, style and inspiration — on Facebook and Instagram.'),links:1},
+  {cls:'finale',h:T('Живея, мечтая, обичам','I live, I dream, I love'),p:T('и се наслаждавам на живота.','and I enjoy life.'),s:T('© 2026 Миглена Иванова','© 2026 Miglena Ivanova')}
+ ]}
+];
+const ROMAN=['I','II','III','IV','V','VI'];
+
+const UI={
+ bg:{brand:'Розова мъгла',next:'Нататък',again:'Отначало',theme:'Светла / тъмна тема',lang:'Switch to English',sound:'Звук',share:'Сподели',pause:'Пауза',play:'Пусни',close:'Затвори',
+  shTitle:'Сподели този свят',shNote:'Така ще изглежда връзката в социалните мрежи.',copy:'Копирай линка',copied:'Линкът е копиран',more:'Още приложения…',hint:'Плъзни нагоре или докосни ●, за да продължиш',
+  shareText:'Розова мъгла — Миглена Иванова. Морето, тишината и изкуството да живееш.',level:'Ниво',langBtn:'EN',title:'Розова мъгла — Миглена Иванова'},
+ en:{brand:'Pink Mist',next:'Next',again:'Again',theme:'Light / dark theme',lang:'Превключи на български',sound:'Sound',share:'Share',pause:'Pause',play:'Play',close:'Close',
+  shTitle:'Share this world',shNote:'This is how the link will look on social networks.',copy:'Copy link',copied:'Link copied',more:'More apps…',hint:'Swipe up or tap ● to continue',
+  shareText:'Pink Mist — Miglena Ivanova. The sea, the silence, and the art of living.',level:'Level',langBtn:'БГ',title:'Pink Mist — Miglena Ivanova'}
+};
+
+/* ---------------- state ---------------- */
+let lang='bg',theme='dark';
+try{lang=localStorage.getItem('pm-lang')||((navigator.language||'bg').toLowerCase().startsWith('bg')?'bg':'en');
+    const th=localStorage.getItem('pm-theme');theme=th||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}catch(e){}
+if(lang!=='bg'&&lang!=='en')lang='bg';
+const st={li:0,bi:0,loop:0,phase:'idle',t0:0,hold:0,paused:false,busy:false,els:[]};
+const EM=1500,DIS=900;
+const stage=$('#stage');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const t=k=>UI[lang][k];
+
+/* ---------------- DOM builders ---------------- */
+function words(str,step,base){
+  const f=document.createDocumentFragment(),a=str.split(' ');
+  a.forEach((w,i)=>{const s=document.createElement('span');s.className='w';
+    s.style.setProperty('--d',Math.min(base+i*step,1250)+'ms');s.textContent=w;f.appendChild(s);
+    if(i<a.length-1)f.appendChild(document.createTextNode(' '));});
+  return f;
+}
+function chars(str,step,base){
+  const f=document.createDocumentFragment(),a=str.split(' ');let n=0;
+  a.forEach((w,wi)=>{const wd=document.createElement('span');wd.className='wd';
+    for(const ch of w){const c=document.createElement('span');c.className='c';
+      c.style.setProperty('--d',Math.min(base+n*step,1100)+'ms');c.textContent=ch;wd.appendChild(c);n++;}
+    f.appendChild(wd);if(wi<a.length-1)f.appendChild(document.createTextNode(' '));});
+  return f;
+}
+const cnt=s=>s.split(' ').length;
+function el(tag,cls,parent){const e=document.createElement(tag);if(cls)e.className=cls;if(parent)parent.appendChild(e);return e;}
+const ICON_FB='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8.5A.5.5 0 0 1 14 8z"/></svg>';
+const ICON_IG='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></svg>';
+
+function buildBeat(b,idx){
+  const isPhoto=!!b.img;
+  const e=el('article','beat '+(isPhoto?'photo':'text')+(b.cls?' '+b.cls:'')+(idx%2?' rev':''));
+  const shortText=!isPhoto&&((b.p?cnt(b.p[lang]):0)+(b.h?cnt(b.h[lang]):0))<=9;
+  if(shortText||b.h)e.classList.add('short');
+  if(b.lock)e.dataset.lock='1';
+  if(isPhoto){
+    const fr=el('div','frame',e);
+    const lo=el('img','lo',fr);lo.src=TINY[b.img];lo.alt='';
+    const hi=el('img','hi',fr);hi.dataset.src=b.img+'.jpg';hi.alt=b.p[lang];hi.decoding='async';
+    hi.style.objectPosition=FOCUS[b.img]||'50% 30%';
+    fr.style.setProperty('--fo',FOCUS[b.img]||'50% 40%');
+    const veil=el('i','veil',fr);veil.setAttribute('aria-hidden','true');
+    const cap=el('div','cap',e);
+    const p=el('p','p',cap);p.appendChild(words(b.p[lang],Math.min(60,900/cnt(b.p[lang])),550));
+    if(b.by){const by=el('span','by',cap);by.appendChild(words(b.by[lang],60,1100));}
+    return e;
+  }
+  const inner=el('div','inner',e);
+  if(b.k){const k=el('span','k',inner);k.appendChild(chars(b.k[lang],32,0));}
+  if(b.h){const h=el('h2','h',inner);h.appendChild(chars(b.h[lang],Math.min(42,900/b.h[lang].length),160));}
+  if(b.p){const p=el('p','p',inner);p.appendChild(words(b.p[lang],Math.min(60,900/cnt(b.p[lang])),b.h?600:250));}
+  if(b.by){const by=el('span','by',inner);by.appendChild(words(b.by[lang],60,900));}
+  if(b.s){const s=el('span','s',inner);s.appendChild(words(b.s[lang],70,1100));}
+  if(b.links){
+    const l=el('div','links',inner);
+    l.innerHTML='<a href="'+LINKS.fb+'" target="_blank" rel="noopener">'+ICON_FB+'Facebook</a><a href="'+LINKS.ig+'" target="_blank" rel="noopener">'+ICON_IG+'Instagram</a>';
+    l.firstChild.setAttribute('aria-label','Facebook — '+(lang==='bg'?'профил на Миглена':'Miglena’s profile'));
+    l.lastChild.setAttribute('aria-label','Instagram — '+(lang==='bg'?'профил на Миглена':'Miglena’s profile'));
+  }
+  return e;
+}
+function buildLevel(i){
+  stage.replaceChildren();
+  st.els=LV[i].beats.map((b,idx)=>{const e=buildBeat(b,idx);stage.appendChild(e);return e;});
+  // load photos of this level now, next level in the background
+  stage.querySelectorAll('img.hi').forEach(im=>{im.src=im.dataset.src;});
+  const nx=LV[(i+1)%LV.length];nx.beats.forEach(b=>{if(b.img){const im=new Image();im.src=b.img+'.jpg';}});
+  $('#lvl').textContent=ROMAN[i]+' · '+LV[i].name[lang];
+  document.querySelectorAll('.dot').forEach((d,j)=>d.setAttribute('aria-current',j===i?'true':'false'));
+  const last=i===LV.length-1;
+  $('#orb').classList.toggle('last',last);
+  $('#orbLabel').textContent=last?t('again'):t('next');
+  $('#orb').setAttribute('aria-label',last?t('again'):t('next'));
+}
+
+/* ---------------- timeline ---------------- */
+const VAR=[['0px','26px',1.03,'0px','-10px'],['-44px','0px',1.02,'-12px','0px'],['0px','0px',1.14,'0px','0px'],['44px','-16px',.98,'12px','-8px']];
+function holdFor(b){
+  if(b.hold)return b.hold;
+  const w=(b.p?cnt(b.p[lang]):0)+(b.h?cnt(b.h[lang])*1.2:0);
+  if(b.img)return Math.max(3600,2900+w*230);
+  return Math.min(8200,Math.max(3300,1900+w*215));
+}
+function startBeat(quiet){
+  const e=st.els[st.bi],b=LV[st.li].beats[st.bi];
+  const v=VAR[(st.loop+st.bi)%VAR.length];
+  e.style.setProperty('--dx',v[0]);e.style.setProperty('--dy',v[1]);e.style.setProperty('--s',v[2]);
+  e.style.setProperty('--kx',v[3]);e.style.setProperty('--ky',v[4]);
+  e.classList.remove('out');e.classList.add('on','in');
+  st.phase='in';st.t0=performance.now();st.hold=holdFor(b);
+  kick(.9);if(!quiet)chime();
+  hud();
+}
+function endBeat(){
+  const e=st.els[st.bi];
+  e.classList.remove('on','in','out');void e.offsetWidth;
+}
+function hud(){
+  const n=st.els.length,p=x=>String(x).padStart(2,'0');
+  $('#hud').textContent='×'+(st.loop+1)+' · '+p(st.bi+1)+'/'+p(n);
+}
+function nextBeat(){
+  endBeat();
+  st.bi++;
+  if(st.bi>=st.els.length){
+    st.bi=0;st.loop++;
+    if(st.loop>=LV[st.li].loops){goLevel((st.li+1)%LV.length,true);return;}
+  }
+  startBeat();
+}
+function tick(now){
+  const e=st.els[st.bi];if(!e||st.busy)return;
+  const el_=now-st.t0;
+  if(st.phase==='in'){
+    if(el_>=EM+st.hold){
+      if(e.dataset.lock&&(e.matches(':hover')||e.contains(document.activeElement))&&!reduce){st.t0+=50;return;}
+      e.classList.add('out');st.phase='out';st.t0=now;dT=.98;
+    }
+  }else if(st.phase==='out'&&el_>=DIS){nextBeat();}
+  // progress bar
+  const n=st.els.length;
+  const frac=st.phase==='in'?Math.min(1,el_/(EM+st.hold)):1;
+  const prog=(st.loop+(st.bi+frac)/n)/LV[st.li].loops;
+  $('#prog').style.transform='scaleX('+Math.min(1,prog).toFixed(4)+')';
+}
+function goLevel(i,auto){
+  if(st.busy)return;
+  st.busy=true;
+  if(st.paused)setPaused(false);
+  kick(1);swoosh();
+  const cur=st.els[st.bi];if(cur&&cur.classList.contains('on'))cur.classList.add('out');
+  setTimeout(()=>{
+    st.li=i;st.bi=0;st.loop=0;
+    buildLevel(i);st.busy=false;startBeat(true);
+  },auto?520:640);
+}
+function next(){goLevel((st.li+1)%LV.length);}
+function prev(){goLevel((st.li-1+LV.length)%LV.length);}
+
+/* ---------------- mist canvas ---------------- */
+const cv=$('#mist'),cx=cv.getContext('2d');
+let W=2,H=2,SC=.4;
+const PAL={
+  dark:[[255,105,170],[205,80,215],[255,160,205],[135,70,195],[255,190,165]],
+  light:[[255,140,188],[255,188,214],[240,108,160],[255,216,230],[216,172,242],[255,208,178]]
+};
+let sprites=[],dens=1,dT=.3;
+const blobs=[],bokeh=[],ripples=[];
+for(let i=0;i<15;i++)blobs.push({x:Math.random(),y:Math.random(),r:.22+Math.random()*.3,ax:.12+Math.random()*.2,ay:.08+Math.random()*.16,
+  sx:.05+Math.random()*.09,sy:.04+Math.random()*.08,p:Math.random()*6.28,c:i%6,a:.55+Math.random()*.45});
+for(let i=0;i<22;i++)bokeh.push({x:Math.random(),o:Math.random(),sp:.012+Math.random()*.03,r:.006+Math.random()*.012,p:Math.random()*6.28,c:i%5});
+function mkSprites(){
+  sprites=PAL[theme].map(c=>{const s=document.createElement('canvas');s.width=s.height=128;const g=s.getContext('2d');
+    const gr=g.createRadialGradient(64,64,0,64,64,64);
+    gr.addColorStop(0,'rgba('+c+',1)');gr.addColorStop(.5,'rgba('+c+',.42)');gr.addColorStop(1,'rgba('+c+',0)');
+    g.fillStyle=gr;g.fillRect(0,0,128,128);return s;});
+}
+function size(){
+  const w=innerWidth,h=innerHeight;SC=Math.min(.4,560/Math.max(w,h));
+  W=Math.max(2,Math.round(w*SC));H=Math.max(2,Math.round(h*SC));cv.width=W;cv.height=H;
+}
+function kick(v){dens=Math.max(dens,v);dT=.3;}
+function drawMist(now,dt){
+  const tt=now/1000,dark=theme==='dark';
+  dens+=(dT-dens)*(1-Math.exp(-dt*2.6));
+  cx.clearRect(0,0,W,H);
+  cx.globalCompositeOperation=dark?'lighter':'source-over';
+  const M=Math.max(W,H),k=reduce?.4:1;
+  const baseA=dark?.24:.46;
+  for(const b of blobs){
+    const x=(b.x+Math.sin(tt*b.sx*k+b.p)*b.ax)*W,y=(b.y+Math.cos(tt*b.sy*k+b.p*1.3)*b.ay)*H;
+    const r=b.r*M*(.8+.55*dens);
+    cx.globalAlpha=Math.min(1,baseA*b.a*(.38+.9*dens));
+    cx.drawImage(sprites[b.c%sprites.length],x-r,y-r,r*2,r*2);
+  }
+  // bokeh pollen rising through the mist
+  for(const o of bokeh){
+    const y=(1-((tt*o.sp*k+o.o)%1))*H,x=(o.x+Math.sin(tt*.3+o.p)*.02)*W,r=o.r*M;
+    cx.globalAlpha=(dark?.5:.55)*(.5+.5*Math.sin(tt*.8+o.p));
+    cx.drawImage(sprites[o.c%sprites.length],x-r,y-r,r*2,r*2);
+  }
+  cx.globalAlpha=1;cx.globalCompositeOperation='source-over';
+  // sea: three soft waves at the bottom
+  for(let j=0;j<3;j++){
+    const y0=H*(.82+j*.05),amp=H*(.012+.012*dens)*(1+j*.4);
+    cx.beginPath();cx.moveTo(0,H);
+    for(let x=0;x<=W;x+=Math.max(4,W/60)){cx.lineTo(x,y0+Math.sin(x/W*(6+j*2)+tt*(.5+j*.22)*k+j*1.7)*amp);}
+    cx.lineTo(W,H);cx.closePath();
+    cx.fillStyle=dark?'rgba(255,130,190,'+(.07+j*.05)+')':'rgba(214,54,111,'+(.06+j*.04)+')';
+    cx.fill();
+  }
+  // ripples
+  for(let i=ripples.length-1;i>=0;i--){
+    const r=ripples[i],e=now-r.t;if(e>2200){ripples.splice(i,1);continue;}
+    for(let q=0;q<2;q++){
+      const ee=e-q*260;if(ee<0)continue;
+      cx.beginPath();cx.arc(r.x,r.y,ee*.05*SC*2.4,0,6.283);
+      cx.strokeStyle=dark?'rgba(255,225,238,'+((1-ee/2200)*.6)+')':'rgba(200,31,102,'+((1-ee/2200)*.5)+')';
+      cx.lineWidth=1.6;cx.stroke();
+    }
+  }
+}
+
+/* ---------------- sound (WebAudio, tiny) ---------------- */
+let AC=null,master=null,sndOn=false;
+const PENT=[587.33,659.25,739.99,880,987.77,1174.66];
+function audioInit(){
+  const C=window.AudioContext||window.webkitAudioContext;if(!C)return false;
+  AC=new C();master=AC.createGain();master.gain.value=0;master.connect(AC.destination);
+  // sea wash: brown noise through a slowly breathing low-pass
+  const nb=AC.createBuffer(1,AC.sampleRate*4,AC.sampleRate),d=nb.getChannelData(0);let l=0;
+  for(let i=0;i<d.length;i++){l=(l+.02*(Math.random()*2-1))/1.02;d[i]=l*3.5;}
+  const ns=AC.createBufferSource();ns.buffer=nb;ns.loop=true;
+  const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=520;
+  const sg=AC.createGain();sg.gain.value=.22;
+  const lfo=AC.createOscillator();lfo.frequency.value=.09;const lg=AC.createGain();lg.gain.value=.16;lfo.connect(lg);lg.connect(sg.gain);
+  const lfo2=AC.createOscillator();lfo2.frequency.value=.07;const lg2=AC.createGain();lg2.gain.value=260;lfo2.connect(lg2);lg2.connect(lp.frequency);
+  ns.connect(lp);lp.connect(sg);sg.connect(master);ns.start();lfo.start();lfo2.start();
+  // soft pad: D – A – D – F#
+  const pf=AC.createBiquadFilter();pf.type='lowpass';pf.frequency.value=900;const pg=AC.createGain();pg.gain.value=.07;pf.connect(pg);pg.connect(master);
+  [146.83,220,293.66,369.99].forEach((f,i)=>{const o=AC.createOscillator();o.type=i%2?'sine':'triangle';o.frequency.value=f;o.detune.value=(i-1.5)*5;o.connect(pf);o.start();});
+  return true;
+}
+function setSound(on){
+  if(on&&!AC&&!audioInit())return;
+  sndOn=on;
+  $('#bSound').classList.toggle('on',on);$('#bSound').setAttribute('aria-pressed',on);
+  if(!AC)return;
+  if(on){AC.resume();master.gain.cancelScheduledValues(AC.currentTime);master.gain.setTargetAtTime(.9,AC.currentTime,.8);}
+  else{master.gain.setTargetAtTime(0,AC.currentTime,.15);setTimeout(()=>{if(!sndOn)AC.suspend();},700);}
+}
+function chime(){
+  if(!sndOn||!AC)return;const n=AC.currentTime,f=PENT[(Math.random()*PENT.length)|0];
+  [[f,.06],[f*2.003,.018]].forEach(([fr,v])=>{const o=AC.createOscillator(),g=AC.createGain();o.type='sine';o.frequency.value=fr;
+    g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime(v,n+.02);g.gain.exponentialRampToValueAtTime(.0001,n+2.6);
+    o.connect(g);g.connect(master);o.start(n);o.stop(n+2.7);});
+}
+function swoosh(){
+  if(!sndOn||!AC)return;const n=AC.currentTime;
+  const b=AC.createBuffer(1,AC.sampleRate*1.4,AC.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+  const s=AC.createBufferSource();s.buffer=b;const f=AC.createBiquadFilter();f.type='bandpass';f.Q.value=.8;
+  f.frequency.setValueAtTime(300,n);f.frequency.exponentialRampToValueAtTime(2400,n+1.1);
+  const g=AC.createGain();g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime(.12,n+.5);g.gain.linearRampToValueAtTime(0,n+1.3);
+  s.connect(f);f.connect(g);g.connect(master);s.start(n);
+}
+
+/* ---------------- UI wiring ---------------- */
+function applyLang(){
+  document.documentElement.lang=lang;document.title=t('title');
+  document.querySelectorAll('[data-i]').forEach(n=>{n.textContent=t(n.dataset.i);});
+  document.querySelectorAll('[data-aria]').forEach(n=>{
+    let k=n.dataset.aria;
+    if(k==='pause'&&st.paused)k='play';
+    n.setAttribute('aria-label',t(k));n.title=t(k);
+  });
+  $('#bLang').textContent=t('langBtn');
+  document.querySelectorAll('.dot').forEach((d,j)=>{d.setAttribute('aria-label',t('level')+' '+(j+1)+': '+LV[j].name[lang]);});
+  buildGrid();
+}
+function setLang(l){
+  lang=l;try{localStorage.setItem('pm-lang',l);}catch(e){}
+  applyLang();
+  if(st.els.length){
+    const bi=st.bi;buildLevel(st.li);st.bi=bi;startBeat(true);
+  }
+}
+function setTheme(th){
+  theme=th;document.documentElement.dataset.theme=th;try{localStorage.setItem('pm-theme',th);}catch(e){}
+  $('meta[name=theme-color]').content=th==='dark'?'#14060f':'#fff5f8';
+  mkSprites();
+}
+function setPaused(p){
+  st.paused=p;$('#bPause').classList.toggle('paused',p);document.body.classList.toggle('paused-state',p);
+  const k=p?'play':'pause';$('#bPause').setAttribute('aria-label',t(k));$('#bPause').title=t(k);
+}
+function toast(msg){const e=$('#toast');e.textContent=msg;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2200);}
+
+/* share */
+const pageURL=()=>location.href.split('#')[0].split('?')[0];
+function buildGrid(){
+  const g=$('#grid');g.replaceChildren();
+  const u=encodeURIComponent(pageURL()),tx=encodeURIComponent(t('shareText')),img=encodeURIComponent(new URL('share.jpg',pageURL()).href);
+  const S=[
+    ['Facebook','https://www.facebook.com/sharer/sharer.php?u='+u],
+    ['WhatsApp','https://wa.me/?text='+tx+'%20'+u],
+    ['Viber','viber://forward?text='+tx+'%20'+u],
+    ['Telegram','https://t.me/share/url?url='+u+'&text='+tx],
+    ['X','https://twitter.com/intent/tweet?url='+u+'&text='+tx],
+    ['LinkedIn','https://www.linkedin.com/sharing/share-offsite/?url='+u],
+    ['Pinterest','https://pinterest.com/pin/create/button/?url='+u+'&media='+img+'&description='+tx],
+    ['Email','mailto:?subject='+encodeURIComponent(t('title'))+'&body='+tx+'%20'+u]
+  ];
+  S.forEach(([n,h])=>{const a=el('a','',g);a.textContent=n;a.href=h;a.target='_blank';a.rel='noopener';});
+  if(navigator.share){const b=el('button','',g);b.type='button';b.textContent='Instagram · '+t('more');
+    b.onclick=()=>navigator.share({title:t('title'),text:t('shareText'),url:pageURL()}).catch(()=>{});}
+  const c=el('button','copy',g);c.type='button';c.textContent=t('copy');c.onclick=copyLink;
+}
+function copyLink(){
+  const u=pageURL(),done=()=>toast(t('copied'));
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(u).then(done,fallback);}else fallback();
+  function fallback(){const ta=document.createElement('textarea');ta.value=u;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');done();}catch(e){}ta.remove();}
+}
+let lastFocus=null;
+function openSheet(){lastFocus=document.activeElement;$('#sheet').classList.add('open');setTimeout(()=>$('#shClose').focus(),50);}
+function closeSheet(){$('#sheet').classList.remove('open');if(lastFocus)lastFocus.focus();}
+const sheetOpen=()=>$('#sheet').classList.contains('open');
+
+/* dots */
+LV.forEach((_,i)=>{const b=el('button','dot',$('#dots'));b.type='button';b.onclick=()=>{if(i!==st.li)goLevel(i);};});
+
+$('#orb').onclick=next;
+$('#bTheme').onclick=()=>setTheme(theme==='dark'?'light':'dark');
+$('#bLang').onclick=()=>setLang(lang==='bg'?'en':'bg');
+$('#bSound').onclick=()=>setSound(!sndOn);
+$('#bShare').onclick=openSheet;
+$('#shClose').onclick=closeSheet;
+$('#sheet').addEventListener('pointerdown',e=>{if(e.target.id==='sheet')closeSheet();});
+$('#bPause').onclick=()=>setPaused(!st.paused);
+
+addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&sheetOpen()){closeSheet();return;}
+  if(sheetOpen()||e.target.closest('button,a'))return;
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+});
+let wheelLock=0;
+addEventListener('wheel',e=>{
+  if(sheetOpen())return;const n=performance.now();if(n<wheelLock||Math.abs(e.deltaY)<30)return;
+  wheelLock=n+1200;e.deltaY>0?next():prev();
+},{passive:true});
+let tx0=0,ty0=0,tm=false;
+stage.addEventListener('touchstart',e=>{const p=e.touches[0];tx0=p.clientX;ty0=p.clientY;tm=false;},{passive:true});
+stage.addEventListener('touchend',e=>{
+  const p=e.changedTouches[0],dx=p.clientX-tx0,dy=p.clientY-ty0;
+  if(Math.abs(dy)>60&&Math.abs(dy)>Math.abs(dx)){tm=true;dy<0?next():prev();}
+  else if(Math.abs(dx)>70){tm=true;dx<0?next():prev();}
+},{passive:true});
+addEventListener('pointerdown',e=>{
+  if(e.target.closest('button,a,.sheet'))return;
+  ripples.push({x:e.clientX*SC,y:e.clientY*SC,t:performance.now()});dens=Math.max(dens,.55);
+});
+let hiddenAt=0;
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){hiddenAt=performance.now();if(sndOn&&AC)AC.suspend();}
+  else{const n=performance.now();st.t0+=n-hiddenAt;last=n;if(sndOn&&AC)AC.resume();}
+});
+addEventListener('resize',size);
+
+/* ---------------- main loop ---------------- */
+let last=performance.now(),lastDraw=0;
+function frame(now){
+  requestAnimationFrame(frame);
+  if(document.hidden){last=now;return;}
+  const dt=Math.min(.1,(now-last)/1000);
+  if(st.paused)st.t0+=now-last;
+  last=now;
+  if(now-lastDraw>=30){drawMist(now,Math.max(dt,.03));lastDraw=now;}
+  if(!st.paused)tick(now);
+}
+
+/* ---------------- boot ---------------- */
+document.documentElement.dataset.theme=theme;
+$('meta[name=theme-color]').content=theme==='dark'?'#14060f':'#fff5f8';
+size();mkSprites();applyLang();
+buildLevel(0);
+const hint=$('#hint');hint.textContent=t('hint');
+setTimeout(()=>{hint.textContent=t('hint');hint.classList.add('show');setTimeout(()=>hint.classList.remove('show'),6500);},5200);
+startBeat(true);
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
